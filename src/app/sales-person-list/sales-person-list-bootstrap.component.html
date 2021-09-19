@@ -5,6 +5,7 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Sales Volume</th>
+            <th>Met Quota?</th>
         </tr>
     </thead>
 
@@ -13,7 +14,15 @@
             <td>{{tempSalesPerson.firstName}}</td>
             <td>{{tempSalesPerson.lastName}}</td>
             <td>{{tempSalesPerson.email}}</td>
-            <td>{{tempSalesPerson.salesVolume}}</td>
+
+            <!-- Make the $ value display in USD -->
+            
+            <td>{{tempSalesPerson.salesVolume | currency:'USD'}}</td>
+            <!-- Conditional Angular column -->
+            <td>
+                <div *ngIf='tempSalesPerson.salesVolume > 160000; else elseBlk'>Yes</div>
+                <ng-template #elseBlk>No</ng-template>
+            </td>
         </tr>
     </tbody>
 </table>
